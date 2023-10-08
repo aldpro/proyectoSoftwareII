@@ -1,6 +1,6 @@
-co.emp.prisig.converter.AntiguedadConverter
-co.emp.prisig.converter.CiudadConverter
-co.emp.prisig.converter.TipoInmuebleConverter
+co.emp.softwareII.converter.AntiguedadConverter
+co.emp.softwareII.converter.CiudadConverter
+co.emp.softwareII.converter.TipoInmuebleConverter
 com.sun.faces.cdi.CdiConverter
 com.sun.faces.cdi.CdiValidator
 com.sun.faces.component.ComponentResourceContainer

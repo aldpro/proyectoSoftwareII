@@ -56,118 +56,30 @@
 
                             <p class="fw-bold mb-3">Llamanos:</p>
 
-                            <p:button style="font-family: 'Montserrat', sans-serif; background-color: #004581" value="3123636413" icon="pi pi-phone" href="tel:+573123636413" styleClass="ui-button-raised mb-3 me-3" />
-                            <p:button style="font-family: 'Montserrat', sans-serif; background-color: #004581" value="3123636413" icon="pi pi-phone" href="tel:+573142193523" styleClass="ui-button-raised mb-4" />
+                            <p:button style="font-family: 'Montserrat', sans-serif; background-color: #004581" value="3005189578" icon="pi pi-phone" href="tel:+573005189578" styleClass="ui-button-raised mb-3 me-3" />
+                            <p:button style="font-family: 'Montserrat', sans-serif; background-color: #004581" value="3002718647" icon="pi pi-phone" href="tel:+573002718647" styleClass="ui-button-raised mb-4" />
 
                             <p class="fw-bold mb-3">Escríbenos:</p>
 
-                            <p:button style="font-family: 'Montserrat', sans-serif; background-color: #004581" value="contacto@prisigsas.com" icon="pi pi-envelope" href="mailto:contacto@prisigsas.com" styleClass="ui-button-raised ui-button-info me-3 mb-3" />
-                            <p:button style="font-family: 'Montserrat', sans-serif; background-color: #004581" value="Whatsapp" icon="pi pi-whatsapp" href="https://wa.me/573123636413" target="_blank" styleClass="ui-button-raised ui-button-success mb-4" />
+                            <p:button style="font-family: 'Montserrat', sans-serif; background-color: #004581" value="contacto@inmobiliaria.com" icon="pi pi-envelope" href="mailto:contacto@prisigsas.com" styleClass="ui-button-raised ui-button-info me-3 mb-3" />
+                            <p:button style="font-family: 'Montserrat', sans-serif; background-color: #004581" value="Whatsapp" icon="pi pi-whatsapp" href="https://wa.me/573005189578" target="_blank" styleClass="ui-button-raised ui-button-success mb-4" />
 
                             <p class="fw-bold mb-3">Síguenos en nuestras redes:</p>
 
-                            <a href="" class="me-4 text-reset" target="_bolk">
+                            <a href="https://www.facebook.com/dani.feli.169?mibextid=LQQJ4d " class="me-4 text-reset" target="_bolk">
                                 <img width="30px" height="30px" alt="facebook" src="resources/img/face.png"></img>
                             </a>
-                            <a href="https://twitter.com/Prisigsas" target="_bolk" class="me-4 text-reset">
+                            <a href="" target="_bolk" class="me-4 text-reset">
                                 <img alt="twitter" width="30px" height="30px" src="resources/img/Twitter-logo.svg.png"></img>
                             </a>
-                            <a href="https://www.instagram.com/prisigsas/" target="_bolk" class="me-4 text-reset">
+                            <a href="https://www.instagram.com/gomez_0203/?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" target="_bolk" class="me-4 text-reset">
                                 <img alt="instagram" width="30px" height="30px" src="resources/img/ig.png"></img>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="card mb-5 shadow-sm" style="background: #004581;width: available">
-                    <div class="justify-content-between align-items-center mt-4">
-                        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 text-white">
 
-                            <div class="col text-center">
-                                <p class="card-subtitle mb-2"> Área Construida</p>
-                                <p class="h3">#{detalleInmuebleArriendoBean.inmArriendo.areaConstruida} m²</p>
-                            </div>
-                            <div class="col text-center" jsf:rendered="#{detalleInmuebleArriendoBean.inmArriendo.habitacion > 0}">
-                                <p class="card-subtitle mb-2">Habitaciones</p>
-                                <p class="h3"> #{detalleInmuebleArriendoBean.inmArriendo.habitacion}
-                                    <a class="btn-cardbox-img" target="_blank">
-                                        <img src="/resources/img/icono_cama.png" class="rounded-1" style="height: 25px; width: 30px" alt="desc"/>
-                                    </a>
-                                </p>
-                            </div>
-                            <div class="col text-center" jsf:rendered="#{detalleInmuebleArriendoBean.inmArriendo.bano > 0}">
-                                <p class="card-subtitle mb-2">Baños</p>
-                                <p class="h3">#{detalleInmuebleArriendoBean.inmArriendo.bano}
-                                    <a class="btn-cardbox-img" target="_blank">
-                                        <img src="/resources/img/icono_banera.png" class="rounded-1" style="height: 25px; width: 30px" alt="desc"/>
-                                    </a>
-                                </p>
-                            </div>
-                            <div class="col text-center" jsf:rendered="#{detalleInmuebleArriendoBean.inmArriendo.estrato > 0}">
-                                <p class="card-subtitle mb-2">Estrato</p>
-                                <p class="h3">#{detalleInmuebleArriendoBean.inmArriendo.estrato}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bd-example mb-5 shadow-sm">
-                    <div class="alert text-white" style="background: #004581">
-                        <h4 class="alert-heading m-lg-3 fw-bold">Descripción del inmueble</h4>
-                        <p class="m-lg-3">#{detalleInmuebleArriendoBean.inmArriendo.descripcion}</p>
-                        <hr>
-                        </hr>
-                        <h4 class="alert-heading m-lg-3 fw-bold">Datos importantes</h4>
-                        <div class="justify-content-between m-lg-3 align-items-center">
-                            <div class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 mt-4">
-                                <div class="col">
-                                    <strong class="fw-bold"> Área Construida</strong>
-                                    <p>#{detalleInmuebleArriendoBean.inmArriendo.areaConstruida} m²</p>
-                                </div>
-                                <div class="col" jsf:rendered="#{detalleInmuebleArriendoBean.inmArriendo.habitacion > 0}">
-                                    <strong class="fw-bold">Habitaciones</strong>
-                                    <p>#{detalleInmuebleArriendoBean.inmArriendo.habitacion}</p>
-                                </div>
-                                <div class="col" jsf:rendered="#{detalleInmuebleArriendoBean.inmArriendo.bano > 0}">
-                                    <strong class="fw-bold">Baños</strong>
-                                    <p>#{detalleInmuebleArriendoBean.inmArriendo.bano}</p>
-                                </div>
-                                <div class="col" jsf:rendered="#{detalleInmuebleArriendoBean.inmArriendo.estrato > 0}">
-                                    <strong class="fw-bold">Estrato</strong>
-                                    <p>#{detalleInmuebleArriendoBean.inmArriendo.estrato}</p>
-                                </div>
-                                <div class="col">
-                                    <strong class="fw-bold">Matrícula inmobiliaria</strong>
-                                    <p>#{detalleInmuebleArriendoBean.inmArriendo.matriculaInmobiliaria}</p>
-                                </div>
-                                <div class="col">
-                                    <strong class="fw-bold">Antigüedad</strong>
-                                    <p>#{detalleInmuebleArriendoBean.inmArriendo.antiguedad.nombre}</p>
-                                </div>
-                                <div class="col">
-                                    <strong class="fw-bold">Niveles</strong>
-                                    <p>#{detalleInmuebleArriendoBean.inmArriendo.niveles}</p>
-                                </div>
-                                <div class="col">
-                                    <strong class="fw-bold">Tipo de inmueble</strong>
-                                    <p>#{detalleInmuebleArriendoBean.inmArriendo.tipoInmueble.nombre}</p>
-                                </div>
-                                <div class="col">
-                                    <strong class="fw-bold">Valor de arrendamiento</strong>
-                                    <p>$ #{detalleInmuebleArriendoBean.inmArriendo.cambiarFormato()}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <script src="https://maps.google.com/maps/api/js?sensor=false" type="application/javascript"></script>
-
-                <h4 class="m-lg-3 fw-bold">Ubicación</h4>
-                <div class="card mb-4">
-                    <p:gmap center="#{detalleInmuebleArriendoBean.ubicacion}" zoom="15" type="HYBRID" style="width:100%;height:500px"
-                            model="#{detalleInmuebleArriendoBean.simpleModel}"/>
-                </div>
             </h:form>
         </div>
     </ui:define>

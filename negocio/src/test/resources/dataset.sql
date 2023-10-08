@@ -18,12 +18,12 @@ insert into inm_arriendo_imagenes_interior values(2, "https://res.cloudinary.com
 insert into inm_arriendo_imagenes_interior values(2, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1673631430/prisig/inmueblesArriendo/EdificioSantaCruzLosCedros_6_fxacun.jpg","prisig/inmueblesArriendo/EdificioSantaCruzLosCedros_6_fxacun");
 insert into inm_arriendo_imagenes_interior values(2, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1673631430/prisig/inmueblesArriendo/EdificioSantaCruzLosCedros_5_xaefuw.jpg","prisig/inmueblesArriendo/EdificioSantaCruzLosCedros_5_xaefuw");
 
-insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1673632721/prisig/inmueblesArriendo/oficinaSalitre1_wc8hct.jpg","pprisig/inmueblesArriendo/oficinaSalitre1_wc8hct");
-insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1673632721/prisig/inmueblesArriendo/oficinaSalitre2_alp5jm.jpg","prisig/inmueblesArriendo/oficinaSalitre2_alp5jm");
-insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1673632721/prisig/inmueblesArriendo/oficinaSalitre3_ggicfs.jpg","prisig/inmueblesArriendo/oficinaSalitre3_ggicfs");
-insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1673632721/prisig/inmueblesArriendo/oficinaSalitre4_zzo1mq.jpg","prisig/inmueblesArriendo/oficinaSalitre4_zzo1mq");
-insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1673632721/prisig/inmueblesArriendo/oficinaSalitre5_fpxfpp.jpg","prisig/inmueblesArriendo/oficinaSalitre5_fpxfpp");
-insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1673632721/prisig/inmueblesArriendo/oficinaSalitre6_s725fx.jpg","prisig/inmueblesArriendo/oficinaSalitre6_s725fx");
+insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1689969681/prisig/inmueblesArriendo/oficinaSalitre7_syriu3.jpg","prisig/inmueblesArriendo/oficinaSalitre7_syriu3");
+insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1689969681/prisig/inmueblesArriendo/oficinaSalitre2_cx4pqd.jpg","prisig/inmueblesArriendo/oficinaSalitre2_cx4pqd");
+insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1689969681/prisig/inmueblesArriendo/oficinaSalitre3_qfwo4x.jpg","prisig/inmueblesArriendo/oficinaSalitre3_qfwo4x");
+insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1689969680/prisig/inmueblesArriendo/oficinaSalitre4_knvl24.jpg","prisig/inmueblesArriendo/oficinaSalitre4_knvl24");
+insert into inm_arriendo_imagenes_interior values(3, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1689969680/prisig/inmueblesArriendo/oficinaSalitre5_vymekw.jpg","prisig/inmueblesArriendo/oficinaSalitre5_vymekw");
+
 
 insert into inm_arriendo_imagenes_principales values (1, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1671476461/prisig/imagenesPrincipalesArriendo/LaCampi%C3%B1aF_cjy1vz.jpg", "prisig/imagenesPrincipalesArriendo/LaCampi%C3%B1aF_cjy1vz");
 insert into inm_arriendo_imagenes_principales values (2, "https://res.cloudinary.com/dcdp3aquu/image/upload/v1688576111/prisig/imagenesPrincipalesArriendo/EdificioSantaCruzLosCedros_flswef.jpg", "prisig/imagenesPrincipalesArriendo/EdificioSantaCruzLosCedros_flswef");
