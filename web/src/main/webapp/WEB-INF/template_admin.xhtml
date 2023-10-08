@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css" />
+    <h:outputScript name="bootstrap.bundle.min.js" library="js" />
+    <h:outputStylesheet name="styles.css" library="css" />
+
+    <title>PRISIG | <ui:insert name="title">Inicio</ui:insert></title>
+</h:head>
+
+<h:body>
+
+    <div class="bg-light shadow-sm">
+        <div class="container" style="font-family: 'Montserrat', sans-serif" >
+            <div class="header d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex mt-4 me-4 align-items-center mb-2 mb-lg-3 text-dark text-decoration-none">
+                    <img src="/resources/img/LogoPrisig.png" alt="mdo" width="144" height="55" />
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0 header">
+                    <li class="nav-link px-2 link-secondary" jsf:rendered="#{!seguridadBean.autenticado}">
+                        <a href="/" style="font-size: 13px" class="nav-link px-2 divider-rigth link-dark mt-md-3 pe-4 ps-lg-4 size_header bold text-black-50">Inicio</a>
+                    </li>
+                    <li class="nav-link px-2 link-secondary" jsf:rendered="#{seguridadBean.autenticado and seguridadBean.tipoSesion == 'admin'}">
+                        <a href="/index_admin.xhtml" style="font-size: 13px" class="nav-link px-2 divider-rigth link-dark mt-md-3 pe-4 ps-lg-4 size_header bold text-black-50">Inicio</a>
+                    </li>
+                    <li class="nav-link px-2 link-secondary" jsf:rendered="#{seguridadBean.autenticado and seguridadBean.tipoSesion == 'admin'}">
+                        <a href="/admin/gestion_inmuebles_arriendo.xhtml" style="font-size: 13px" class="nav-link px-2 divider-rigth link-dark mt-md-3 pe-4 ps-lg-4 size_header bold text-black-50">Gestión Arriendo</a>
+                    </li>
+                    <li class="nav-link px-2 link-secondary" jsf:rendered="#{seguridadBean.autenticado and seguridadBean.tipoSesion == 'admin'}">
+                        <a href="/admin/gestion_inmuebles_venta.xhtml" style="font-size: 13px" class="nav-link px-2 divider-rigth link-dark mt-md-3 pe-4 ps-lg-4 size_header bold text-black-50">Gestión venta</a>
+                    </li>
+                    <li class="nav-link px-2 link-secondary" jsf:rendered="#{seguridadBean.autenticado and seguridadBean.tipoSesion == 'admin'}">
+                        <a href="/admin/gestion_ciudad.xhtml" style="font-size: 13px" class="nav-link px-2 divider-rigth link-dark mt-md-3 pe-4 ps-lg-4 size_header bold text-black-50">Gestión ciudad</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-end" style="font-family: 'Montserrat', sans-serif">
+        <h:form styleClass="mt-4 me-5 mb-5">
+            <p jsf:rendered="#{seguridadBean.autenticado}">Hola #{seguridadBean.administrador.nombre}
+            <p:commandButton rendered="#{seguridadBean.autenticado}" value="Cerrar sesión" action="#{seguridadBean.cerrarSesion}"/></p>
+        </h:form>
+    </div>
+
+    <div id="contenido">
+        <ui:insert name="content"></ui:insert>
+    </div>
+
+</h:body>
+
+</html>

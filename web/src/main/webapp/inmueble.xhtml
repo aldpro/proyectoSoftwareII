@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Inmuebles</ui:define>
+
+
+    <ui:define name="content">
+
+        <div>
+            <img src="/resources/img/portada-inmuebles.png" class="img-fluid" style="width: 100%" alt="imagen_index"/>
+        </div>
+        <div class="py-4">
+            <div class="container">
+
+                <h:form>
+                    <div class="">
+                        <div class="row row-cols-2 row-cols-md-1 row-cols-xl-3">
+
+                            <p:selectOneMenu id="tipo_inmueble" value="#{inmuebleBean.tipoInmueble}" style="margin-right: 20px; margin-left: 20px; margin-bottom: 10px;font-family: 'Montserrat', sans-serif;width: 100%; flex: 1 0 0%" converter="#{tipoInmuebleConverter}" dynamic="true">
+                                <f:selectItem itemLabel="Seleccione el tipo de inmueble" noSelectionOption="false" itemValue="#{null}"/>
+                                <f:selectItems value="#{inmuebleBean.tipoInmuebles}" var="tipo_inmueble" itemLabel="#{tipo_inmueble.nombre}" itemValue="#{tipo_inmueble}"/>
+                                <p:ajax event="change" listener="#{inmuebleBean.elegirTipoInmueble}" update="lista_inmuenle_arriendo,lista_inmuebeles_venta"/>
+                            </p:selectOneMenu>
+
+                            <p:selectOneMenu id="antiguedad" value="#{inmuebleBean.antiguedad}" style="margin-right: 20px; margin-left: 20px;margin-bottom: 10px; font-family: 'Montserrat', sans-serif;width: 100%; flex: 1 0 0%" converter="#{antiguedadConverter}" dynamic="true">
+                                <f:selectItem itemLabel="Antigüedad del inmueble" noSelectionOption="true" itemValue="#{null}"/>
+                                <f:selectItems value="#{inmuebleBean.antiguedades}" var="antiguedad" itemLabel="#{antiguedad.nombre}" itemValue="#{antiguedad}"/>
+                                <p:ajax event="change" listener="#{inmuebleBean.elegirAntiguedad}" update="lista_inmuenle_arriendo,lista_inmuebeles_venta"/>
+                            </p:selectOneMenu>
+
+                            <p:selectOneMenu id="Ciudad" value="#{inmuebleBean.ciudad}" style="margin-right: 20px; margin-left: 20px;margin-bottom: 10px;font-family: 'Montserrat', sans-serif;width: 100%; flex: 1 0 0%" converter="#{ciudadConverter}" dynamic="true">
+                                <f:selectItem itemLabel="Seleccione una ciudad" noSelectionOption="true" itemValue="#{null}"/>
+                                <f:selectItems value="#{inmuebleBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}"/>
+                                <p:ajax event="change" listener="#{inmuebleBean.elegirCiudad}" update="lista_inmuenle_arriendo,lista_inmuebeles_venta"/>
+                            </p:selectOneMenu>
+
+                        </div>
+                    </div>
+                </h:form>
+
+                <hr></hr>
+            </div>
+        </div>
+
+        <div class="album mb-5 bg-gradient" style="font-family: 'Montserrat', sans-serif">
+
+            <div jsf:id="lista_inmuenle_arriendo" class="container">
+                <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+
+                    <p:repeat value="#{inmuebleBean.inmArriendos}" var="inmueble_arriendo">
+                        <div jsf:id="lista_inmuebeles_arriendo" class="col mb-5">
+                            <div class="card h-100">
+
+                                <a class="btn-cardbox-img" href="detalle_inmueble_arriendo.xhtml?inmueble_id=#{inmueble_arriendo.codigo}" target="_blank">
+                                    <img src="#{inmueble_arriendo.imagenPrincipal}" class="rounded-1" alt="#{inmueble_arriendo.codigo}" style="height: 225px; width: 100%"/>
+                                </a>
+                                <p:chip label="Arriendo" styleClass="mr-2 mt-3 m-lg-3" style="font-family: 'Montserrat', sans-serif;position: absolute; background: #934fc2; color: white"/>
+                                <div class="card-body">
+                                    <p class="card-text h3">#{inmueble_arriendo.ciudad.nombre}</p>
+                                    <p class="card-text">#{inmueble_arriendo.barrio} - #{inmueble_arriendo.localidad}</p>
+
+                                    <div class="justify-content-between align-items-center mb-4">
+                                        <div class="row g-3 mt-4">
+                                            <div class="col text-center">
+                                                <p class="card-subtitle text-black-50"> Area(m²)</p>
+                                                <p class=" text-black">#{inmueble_arriendo.areaConstruida}</p>
+                                            </div>
+                                            <div class="col text-center" jsf:rendered="#{inmueble_arriendo.habitacion > 0}">
+                                                <p class="text-black-50 card-subtitle">Hab.</p>
+                                                <p class=" text-black">#{inmueble_arriendo.habitacion}</p>
+                                            </div>
+                                            <div class="col text-center">
+                                                <p class="text-black-50 card-subtitle">Baños</p>
+                                                <p class="text-black">#{inmueble_arriendo.bano}</p>
+                                            </div>
+                                            <div class="col text-center">
+                                                <p class="text-black-50 card-subtitle">Estrato</p>
+                                                <p class="text-black">#{inmueble_arriendo.estrato}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-black-50 card-subtitle">Valor de arrendamiento</p>
+                                    <p class="card-text h4 pr">$ #{inmueble_arriendo.cambiarFormato()}</p>
+                                    <div class="text-end">
+                                        <small class="text-muted">#{inmueble_arriendo.fechaPublicacion}</small>
+                                    </div>
+                                </div>
+                                <a class="btn-cardbox-img" href="detalle_inmueble_arriendo.xhtml?inmueble_id=#{inmueble_arriendo.codigo}" target="_blank">
+                                    <button type="button" class="w-100 btn btn-lg rounded-3" style="background: #934fc2; color: white">Ver más</button>
+                                </a>
+                            </div>
+                        </div>
+                    </p:repeat>
+                </div>
+            </div>
+
+            <div jsf:id="lista_inmuebeles_venta" class="container">
+                <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+                    <p:repeat value="#{inmuebleBean.inmVentas}" var="inmueble_venta">
+                        <div class="col mb-5">
+                            <div class="card h-100">
+
+                                <a class="btn-cardbox-img" href="detalle_inmueble_venta.xhtml?inmueble_id=#{inmueble_venta.codigo}" target="_blank">
+                                    <img src="#{inmueble_venta.imagenPrincipal}" class="rounded-1" alt="#{inmueble_venta.direccion}" style="height: 225px; width: 100%"/>
+                                </a>
+                                <p:chip label="Venta" styleClass="mr-2 mt-3 m-lg-3" style="font-family: 'Montserrat', sans-serif;position: absolute; background: #934fc2; color: white"/>
+                                <div class="card-body text">
+                                    <p class="card-text h3">#{inmueble_venta.ciudad.nombre}</p>
+                                    <p class="card-text">#{inmueble_venta.barrio}</p>
+
+                                    <div class="justify-content-between align-items-center mb-4">
+                                        <div class="row g-3 mt-4">
+                                            <div class="col text-center">
+                                                <p class="card-subtitle text-black-50"> Area(m²)</p>
+                                                <p class=" text-black">#{inmueble_venta.areaConstruida}</p>
+                                            </div>
+                                            <div class="col text-center">
+                                                <p class="text-black-50 card-subtitle">Hab.</p>
+                                                <p class=" text-black">#{inmueble_venta.habitacion}</p>
+                                            </div>
+                                            <div class="col text-center" >
+                                                <p class="text-black-50 card-subtitle">Baños</p>
+                                                <p class="text-black">#{inmueble_venta.bano}</p>
+                                            </div>
+                                            <div class="col text-center">
+                                                <p class="text-black-50 card-subtitle">Estrato</p>
+                                                <p class="text-black">#{inmueble_venta.estrato}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-black-50 card-subtitle">Valor comercial</p>
+                                    <p class="card-text h4 pr">$ #{inmueble_venta.cambiarFormato()}</p>
+                                    <div class="text-end">
+                                        <small class="text-muted">#{inmueble_venta.fechaPublicacion}</small>
+                                    </div>
+                                </div>
+                                <a class="btn-cardbox-img" href="detalle_inmueble_venta.xhtml?inmueble_id=#{inmueble_venta.codigo}" target="_blank">
+                                    <button type="button" class="w-100 btn btn-lg rounded-3" style="background: #934fc2; color: white">Ver más</button>
+                                </a>
+                            </div>
+                        </div>
+                    </p:repeat>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>
+
+</html>

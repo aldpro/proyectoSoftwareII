@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Geoprospecta</ui:define>
+
+    <ui:define name="content">
+
+        <div id="cuerpo" class="container" style="font-family: 'Montserrat', sans-serif">
+
+            <div class="text-center mt-3 mb-4">
+                <h2 class="fw-bold mb-2" style="font-family: 'Montserrat', sans-serif">GEOPROSPECTA</h2>
+                <h5 class="text-black-50 responsive-text" style="font-family: 'Montserrat', sans-serif">Visor geográfico web para la visualización de áreas disponibles para
+                    proyectos de prospección minera en los departamentos de Nariño y Cauca.</h5>
+            </div>
+
+            <div style="width: 100%; height: 500px">
+                <iframe src="https://udistritalfjc.maps.arcgis.com/apps/webappviewer/index.html?id=3ac3e35d1c134d00941fe4a6a36fc65f"
+                        frameborder="0" class="mi-elemento" style="border:0; width: 100%; height: 100%"> </iframe>
+            </div>
+            <div class="text-end p-3 text-reset">
+                <p>Geovisor realizado por: Anngie Catherine Estupiñan Campos</p>
+            </div>
+            <div class="mb-4 text-center">
+                <h2 class="fw-bold">DESCRIPCIÓN</h2>
+                <p class="mt-2 responsive-text" style="text-align: center">Este geovisor permite acceder, visualizar y consultar
+                    información georreferenciada organizada en capas proporcionando al usuario información de su
+                    interés generada por actividades de planeación de proyectos mineros; esta herramienta se enfoca en
+                    la integración, visualización y consulta de información geográfica ambiental, social y minera en
+                    áreas en las cuales se desee desarrollar proyectos de prospección minera, con el fin de generar un
+                    diagnóstico previo de la complejidad e impactos que pueda generar, así mismo es un insumo para
+                    definir áreas disponibles para proyectos de prospección minera de tal manera que se potencialice la
+                    información facilitando la toma de decisiones acertadas como el alcance, presupuesto y logística de
+                    estos proyectos.</p>
+            </div>
+            <div class="text-center mt-3 mb-5">
+                <button type="button" onclick="window.location.href='https://udistritalfjc.maps.arcgis.com/apps/webappviewer/index.html?id=3ac3e35d1c134d00941fe4a6a36fc65f'" class="btn btn-outline-primary botones-styles">Ver completo</button>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>

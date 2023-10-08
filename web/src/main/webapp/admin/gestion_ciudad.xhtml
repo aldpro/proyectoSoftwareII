@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/template_admin.xhtml">
+
+    <ui:define name="title">Gestionar ciudades</ui:define>
+
+    <ui:define name="content">
+
+        <div class="bg-light">
+
+            <h2 class="m-lg-4" style="font-family: sans-serif">Gestión de ciudades</h2>
+
+            <div style="padding: 2rem; background-color: var(--surface-b); color: var(--text-color);">
+
+                <div style="background: var(--surface-e); padding: 2rem; box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%); border-radius: 4px; margin-bottom: 2rem;">
+                    <h:form id="crud_ciudad" >
+
+                        <p:toolbar>
+
+                            <p:toolbarGroup>
+
+                                <p:commandButton value="Agregar" icon="pi pi-plus" styleClass="ui-button-success me-3" update="dialogo_crear"
+                                                 action="#{ciudadBean.crearCiudadDialogo()}" oncomplete="PF('crear_ciudad').show()" />
+
+                                <p:commandButton id="btn_borrar" value="#{ciudadBean.mensajeBorrar}" icon="pi pi-trash"
+                                                 disabled="#{ciudadBean.ciudadesSeleccionadas.size()==0}" styleClass="ui-button-danger"
+                                                 action="#{ciudadBean.eliminarCiudad()}" update="crud_ciudad:lista_ciudades,@this"/>
+
+
+                            </p:toolbarGroup>
+
+                        </p:toolbar>
+
+
+                        <p:dataTable id="lista_ciudades" widgetVar="dtCiudades" value="#{ciudadBean.ciudades}"
+                                     var="ciudad" paginator="true" rows="10" rowKey="#{ciudad.codigo}"
+                                     paginatorPosition="bottom" reflow="true" style="margin-top: 1rem" rowSelectMode="add"
+                                     selection="#{ciudadBean.ciudadesSeleccionadas}" rowSelector="true">
+                            <f:facet name="header">
+                                <div style="display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center; -ms-flex-pack: justify; justify-content: space-between; -ms-flex-wrap: wrap; flex-wrap: wrap;">
+                                    <span style="font-weight: bold">Datos de Ciudad</span>
+                                    <span class="ui-input-icon-left"> <i class="pi pi-search"></i>
+                                        <p:inputText id="globalFilter" onkeyup="PF('dtCiudades').filter()" placeholder="Buscar" />
+                                    </span>
+                                </div>
+                            </f:facet>
+
+                            <p:ajax event="rowSelect" update="crud_ciudad:btn_borrar"/>
+                            <p:ajax event="rowUnselect" update="crud_ciudad:btn_borrar"/>
+                            <p:ajax event="rowSelectCheckbox" update="crud_ciudad:btn_borrar"/>
+                            <p:ajax event="rowUnselectCheckbox" update="crud_ciudad:btn_borrar"/>
+                            <p:ajax event="toggleSelect" update="crud_ciudad:btn_borrar"/>
+
+                            <p:column selectionMode="multiple" exportable="false"/>
+
+                            <p:column headerText="Código" sortBy="#{ciudad.codigo}" filterBy="#{ciudad.codigo}" filterStyle="display: none">
+                                <h:outputText value="#{ciudad.codigo}"/>
+                            </p:column>
+
+                            <p:column headerText="Ciudad" sortBy="#{ciudad.nombre}" filterBy="#{ciudad.nombre}" filterStyle="display: none">
+                                <h:outputText value="#{ciudad.nombre}"/>
+                            </p:column>
+
+                            <p:column headerText="">
+                                <p:commandButton styleClass="edit-button rounded-button vi-button-success" icon="pi pi-pencil"
+                                                 action="#{ciudadBean.seleccionarCiudad(ciudad)}" oncomplete="PF('crear_ciudad').show()"
+                                                 update="dialogo_crear"/>
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </h:form>
+
+
+                    <p:dialog id="dialogo_crear" widgetVar="crear_ciudad" modal="true" blockScroll="true" draggable="false"
+                              maximizable="true" closable="true" header="#{ciudadBean.mensajeCrear}"
+                              showEffect="fade" responsive="true" width="800px" height="500px">
+                        <h:form>
+                            <h5 class="mt-2 mb-4">Ciudad </h5>
+
+                            <div style="display: flex; flex-wrap: wrap; margin-right: -5rem; margin-left: -0.5rem; margin-top: -0.5rem; width: 100%">
+
+                                <div class="col-12" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="ciudad" value="Ingrese el nombre de la ciudad: " style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputText id="ciudad" value="#{ciudadBean.ciudad.nombre}"
+                                                 required="true" style="width: 100%;"/>
+                                    <p:message for="ciudad"/>
+                                </div>
+                            </div>
+
+                            <p:commandButton value="#{ciudadBean.mensajeCrear}"
+                                             action="#{ciudadBean.crearCiudad}" icon="pi pi-plus-circle"
+                                             update="@form,crud_ciudad:lista_ciudades"/>
+
+                            <p:growl for="mensaje_bean" showDetail="true"/>
+                        </h:form>
+                    </p:dialog>
+
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>

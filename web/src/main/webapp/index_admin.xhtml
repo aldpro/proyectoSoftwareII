@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/template_admin.xhtml">
+    <ui:define name="content">
+
+        <div class="container text-center" style="max-width: 400px; padding: 15px">
+
+            <h:form styleClass="text-center">
+                <img class="mb-4" src="/resources/img/icon.jpg" alt="" width="100" height="100"/>
+                <h4 class="mb-3 fw-normal">Inicio de sesión</h4>
+                <h:panelGrid columns="3" styleClass="mb-3" cellpadding="5">
+                    <p:outputLabel for="email_login" value="Email:" />
+                    <p:inputText id="email_login" value="#{seguridadBean.correo}"/>
+                    <p:message for="email_login" />
+                    <p:outputLabel for="password_login" value="Password:" />
+                    <p:password id="password_login" value="#{seguridadBean.password}"/>
+                    <p:message for="password_login" />
+                </h:panelGrid>
+
+                <p:commandButton value="Iniciar sesión" action="#{seguridadBean.iniciarSesionAdmin}"
+                                 styleClass="m-lg-2" update="@form" icon="pi pi-sign-in" iconPos="left" />
+                <p:growl for="login-bean" showDetail="true" />
+            </h:form>
+
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/template_admin.xhtml">
+
+    <ui:define name="title">Gestionar inmuebles</ui:define>
+
+    <ui:define name="content">
+
+        <div class="bg-light">
+
+            <h2 class="m-lg-4" style="font-family: sans-serif">Gestión de inmuebles para arrendar</h2>
+
+            <div style="padding: 2rem; background-color: var(--surface-b); color: var(--text-color);">
+
+                <div style="background: var(--surface-e); padding: 2rem; box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%); border-radius: 4px; margin-bottom: 2rem;">
+                    <h:form id="crud_inm_arriendo" >
+
+                        <p:toolbar>
+
+                            <p:toolbarGroup>
+
+                                <p:commandButton value="Agregar" icon="pi pi-plus" styleClass="ui-button-success me-3"
+                                                 update="dialogo_crear" action="#{inmuebleArriendoBean.crearInmuebleDialogo()}"
+                                                 oncomplete="PF('crear_inmueble').show()"/>
+
+                                <p:commandButton id="btn_borrar" value="#{inmuebleArriendoBean.mensajeBorrar}" icon="pi pi-trash"
+                                                 disabled="#{inmuebleArriendoBean.inmArriendosSeleccionados.size()==0}"
+                                                 styleClass="ui-button-danger" action="#{inmuebleArriendoBean.eliminarInmArriendo}"
+                                                 update="crud_inm_arriendo:lista_inmuebles,@this">
+                                <p:confirm header="Confirmation" message="¿Quieres eliminar los inmuebles selecionados?"
+                                           icon="pi pi-exclamation-triangle" />
+                            </p:commandButton>
+
+
+                        </p:toolbarGroup>
+
+                            <p:toolbarGroup align="right">
+
+                                <p:commandButton value="Exportar" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
+                                    <p:dataExporter type="xls" target="lista" fileName="products" />
+                                </p:commandButton>
+                            </p:toolbarGroup>
+                        </p:toolbar>
+
+
+                        <p:dataTable id="lista_inmuebles" widgetVar="dtInmuebles" value="#{inmuebleArriendoBean.inmArriendos}"
+                                     var="inmueble" paginator="true" rows="10" rowKey="#{inmueble.codigo}"
+                                     paginatorPosition="bottom" reflow="true" style="margin-top: 1rem" rowSelectMode="add"
+                                     selection="#{inmuebleArriendoBean.inmArriendosSeleccionados}" rowSelector="true">
+                            <f:facet name="header">
+                                <div style="display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center; -ms-flex-pack: justify; justify-content: space-between; -ms-flex-wrap: wrap; flex-wrap: wrap;">
+                                    <span style="font-weight: bold">Datos de inmuebles</span>
+                                    <span class="ui-input-icon-left"> <i class="pi pi-search"></i>
+                                        <p:inputText id="globalFilter" onkeyup="PF('dtInmuebles').filter()" placeholder="Buscar" />
+                                    </span>
+                                </div>
+                            </f:facet>
+
+                            <p:ajax event="rowSelect" update="crud_inm_arriendo:btn_borrar"/>
+                            <p:ajax event="rowUnselect" update="crud_inm_arriendo:btn_borrar"/>
+                            <p:ajax event="rowSelectCheckbox" update="crud_inm_arriendo:btn_borrar"/>
+                            <p:ajax event="rowUnselectCheckbox" update="crud_inm_arriendo:btn_borrar"/>
+                            <p:ajax event="toggleSelect" update="crud_inm_arriendo:btn_borrar"/>
+
+                            <p:column selectionMode="multiple" exportable="false"/>
+
+                            <p:column headerText="Código" sortBy="#{inmueble.codigo}" filterBy="#{inmueble.codigo}" filterStyle="display: none">
+                                <h:outputText value="#{inmueble.codigo}"/>
+                            </p:column>
+
+                            <p:column headerText="Ciudad" sortBy="#{inmueble.ciudad.nombre}" filterBy="#{inmueble.ciudad.nombre}" filterStyle="display: none">
+                                <h:outputText value="#{inmueble.ciudad.nombre}"/>
+                            </p:column>
+
+                            <p:column headerText="Localidad" sortBy="#{inmueble.localidad}" filterBy="#{inmueble.localidad}" filterStyle="display: none">
+                                <h:outputText value="#{inmueble.localidad}"/>
+                            </p:column>
+
+                            <p:column headerText="Barrio" sortBy="#{inmueble.barrio}" filterBy="#{inmueble.barrio}" filterStyle="display: none">
+                                <h:outputText value="#{inmueble.barrio}"/>
+                            </p:column>
+
+                            <p:column headerText="Dirección" sortBy="#{inmueble.direccion}"
+                                      filterBy="#{inmueble.direccion}" filterStyle="display: none">
+                                <h:outputText value="#{inmueble.direccion}"/>
+                            </p:column>
+
+                            <p:column headerText="Imagen" exportable="true">
+                                <p:graphicImage value="#{inmueble.imagenPrincipal}" styleClass="container" />
+                            </p:column>
+
+                            <p:column headerText="Matricula" filterBy="#{inmueble.matriculaInmobiliaria}"
+                                      sortBy="#{inmueble.matriculaInmobiliaria}" filterStyle="display: none">
+                                <h:outputText value="#{inmueble.matriculaInmobiliaria}"/>
+                            </p:column>
+
+                            <p:column headerText="Estado" filterBy="#{inmueble.estadoInmueble}" filterStyle="display: none">
+                                <h:outputText value="#{inmueble.estadoInmueble}"/>
+                            </p:column>
+
+                            <p:column headerText="Valor" sortBy="#{inmueble.valor}">
+                                <h:outputText value="#{inmueble.valor}">
+                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column>
+                                <p:commandButton styleClass="edit-button rounded-button vi-button-success" icon="pi pi-pencil"
+                                                 action="#{inmuebleArriendoBean.seleccionarInmArriendo(inmueble)}"
+                                                 oncomplete="PF('crear_inmueble').show()"
+                                                 update="dialogo_crear"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+
+                    <p:dialog id="dialogo_crear" widgetVar="crear_inmueble" modal="true" blockScroll="true" draggable="false"
+                              maximizable="true" closable="true" header="#{inmuebleArriendoBean.mensajeCrear}"
+                              showEffect="fade" responsive="true" width="800px" height="500px">
+                        <h:form>
+                            <h5 class="mt-2 mb-4">Datos de dirección del inmueble: </h5>
+
+                            <div style="display: flex; flex-wrap: wrap; margin-right: -5rem; margin-left: -0.5rem; margin-top: -0.5rem; width: 100%">
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="ciudad_inmueble" value="Ciudad: " style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:selectOneMenu id="ciudad_inmueble" value="#{inmuebleArriendoBean.inmArriendo.ciudad}"
+                                                     converter="#{ciudadConverter}" style="width: 100%;" required="true">
+                                        <f:selectItem itemLabel="Seleccione la ciudad" noSelectionOption="true"/>
+                                        <f:selectItems value="#{inmuebleArriendoBean.ciudades}" var="ciudad"
+                                                       itemValue="#{ciudad}" itemLabel="#{ciudad.nombre}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="ciudad_inmueble"/>
+                                </div>
+
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="direccion_inmueble" value="Dirección: " style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputText id="direccion_inmueble" value="#{inmuebleArriendoBean.inmArriendo.direccion}"
+                                                 required="true" style="width: 100%;"/>
+                                    <p:message for="direccion_inmueble"/>
+                                </div>
+
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="barrio_inmueble" value="Barrio: " style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputText id="barrio_inmueble" value="#{inmuebleArriendoBean.inmArriendo.barrio}"
+                                                 required="true" style="width: 100%;"/>
+                                    <p:message for="barrio_inmueble"/>
+                                </div>
+
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="localidad_inmueble" value="Localidad: " style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputText id="localidad_inmueble" value="#{inmuebleArriendoBean.inmArriendo.localidad}"
+                                                 required="true" style="width: 100%"/>
+                                    <p:message for="localidad_inmueble"/>
+                                </div>
+                            </div>
+
+                            <h6 class="mt-2 mb-4">Coordenadas del inmueble: </h6>
+
+                            <div style="display: flex; flex-wrap: wrap; margin-right: -5rem; margin-left: -0.5rem; margin-top: -0.5rem; width: 100%">
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="lat_inmueble" value="Latitud (lat): " style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputText id="lat_inmueble" value="#{inmuebleArriendoBean.inmArriendo.LAT}"
+                                                 required="true" style="width: 100%"/>
+                                    <p:message for="lat_inmueble"/>
+                                </div>
+
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="lng_inmueble" value="Longitud (lng): " style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputText id="lng_inmueble" value="#{inmuebleArriendoBean.inmArriendo.LNG}"
+                                                 required="true" style="width: 100%"/>
+                                    <p:message for="lng_inmueble"/>
+                                </div>
+                            </div>
+
+                            <h5 class="mt-4 mb-3">Información general del inmueble: </h5>
+
+                            <div style="display: flex; flex-wrap: wrap; margin-right: auto; margin-left: -0.5rem; margin-top: -0.5rem">
+
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="matricula_inmueble" value="Matrícula inmobiliaria: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputText id="matricula_inmueble" value="#{inmuebleArriendoBean.inmArriendo.matriculaInmobiliaria}"
+                                                 required="true" style="width: 100%"/>
+                                    <p:message for="matricula_inmueble"/>
+                                </div>
+
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="estado_inmueble" value="Estado: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:selectOneMenu id="estado_inmueble" value="#{inmuebleArriendoBean.inmArriendo.estadoInmueble}"
+                                                     style="width: 100%">
+                                        <f:selectItem itemLabel="Seleccione el estado" noSelectionOption="true"/>
+                                        <f:selectItems value="#{inmuebleArriendoBean.estadoInmuebles}" var="estado"
+                                                       itemValue="#{estado}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="estado_inmueble"/>
+                                </div>
+
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="tipo_inmueble" value="Tipo de inmueble: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:selectOneMenu id="tipo_inmueble" value="#{inmuebleArriendoBean.inmArriendo.tipoInmueble}" style="width: 100%">
+                                        <f:selectItem itemLabel="Seleccione el estado" noSelectionOption="true"/>
+                                        <f:selectItems value="#{inmuebleArriendoBean.tipoInmuebles}" var="tipo"
+                                                       itemValue="#{tipo}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="tipo_inmueble"/>
+                                </div>
+
+                                <div class="col-5" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="valor_inmueble" value="Valor de arrendamiento: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputNumber id="valor_inmueble" value="#{inmuebleArriendoBean.inmArriendo.valor}"
+                                                   required="true" symbol="$" symbolPosition="s" minValue="1"
+                                                   decimalSeparator="," thousandSeparator="."
+                                                   styleClass="ui-inputnumber ui-widget ui-fluid ui-inputwrapper-fill"/>
+                                    <p:message for="valor_inmueble"/>
+                                </div>
+
+                                <div class="col-3" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="habitacion_inmueble" value="Número de habitaciones: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:spinner id="habitacion_inmueble" required="false" value="#{inmuebleArriendoBean.inmArriendo.habitacion}"
+                                               style="width: 100%"/>
+                                    <p:message for="habitacion_inmueble"/>
+                                </div>
+
+                                <div class="col-3" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="bano_inmueble" value="Número de baños: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:spinner id="bano_inmueble" required="false" value="#{inmuebleArriendoBean.inmArriendo.bano}"
+                                               style="width: 100%"/>
+                                    <p:message for="bano_inmueble"/>
+                                </div>
+
+                                <div class="col-3" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="nivel_inmueble" value="Nivel(es): "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputText id="nivel_inmueble" value="#{inmuebleArriendoBean.inmArriendo.niveles}"
+                                                 required="true" style="width: 100%"/>
+                                    <p:message for="nivel_inmueble"/>
+                                </div>
+
+                                <div class="col-4" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="antiguedad_inmueble" value="Antigüedad: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:selectOneMenu id="antiguedad_inmueble" value="#{inmuebleArriendoBean.inmArriendo.antiguedad}"
+                                                     style="width: 100%">
+                                        <f:selectItem itemLabel="Seleccione la entigüedad" noSelectionOption="true"/>
+                                        <f:selectItems value="#{inmuebleArriendoBean.antiguedades}" var="antiguedad"
+                                                       itemValue="#{antiguedad}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="antiguedad_inmueble"/>
+                                </div>
+
+                                <div class="col-2" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="estrato_inmueble" value="Estrato: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:spinner id="estrato_inmueble" value="#{inmuebleArriendoBean.inmArriendo.estrato}"
+                                               style="width: 100%"/>
+                                    <p:message for="estrato_inmueble"/>
+                                </div>
+
+                                <div class="col-3" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="area_construida_inmueble" value="Area construida (m²): "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputNumber id="area_construida_inmueble" value="#{inmuebleArriendoBean.inmArriendo.areaConstruida}" symbol=" m²"
+                                                   symbolPosition="s" required="true" styleClass="ui-inputnumber ui-widget ui-fluid ui-inputwrapper-fill"/>
+                                    <p:message for="area_construida_inmueble"/>
+                                </div>
+
+                                <div class="col-11" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="descripcion_inmueble" value="Descripción: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputTextarea id="descripcion_inmueble" rows="6" cols="30" styleClass="w-100"
+                                                     value="#{inmuebleArriendoBean.inmArriendo.descripcion}" required="true"/>
+                                    <p:message for="descripcion_inmueble"/>
+                                </div>
+
+                                <div class="col-11" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="ficha_tecnica" value="Pega el enlace de ficha técnica: "
+                                                   style="display: inline-block; margin-bottom: 0.5rem"/>
+                                    <p:inputText id="ficha_tecnica" value="#{inmuebleArriendoBean.inmArriendo.fichaTecnica}"
+                                                 required="false" styleClass="w-100"/>
+                                    <p:message for="ficha_tecnica"/>
+                                </div>
+
+                                <h6 class="mt-2 mb-4">Imágenes del inmueble: </h6>
+
+                                <div class="col-11" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="imagen_principal_inmueble" value="Agregar imagen principal:"/>
+                                    <p:fileUpload id="imagen_principal_inmueble" listener="#{inmuebleArriendoBean.subirImagenPrincipal}" mode="advanced"
+                                                  multiple="false" sizeLimit="1000000" fileLimit="2"
+                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                    <p:message for="imagen_principal_inmueble"/>
+                                </div>
+
+                                <div class="col-11" style="margin-bottom: 1rem; margin-right: 1rem">
+                                    <p:outputLabel for="imagenes_interior_inmueble" value="Agregar imagenes del interior:"/>
+                                    <p:fileUpload id="imagenes_interior_inmueble" listener="#{inmuebleArriendoBean.subirImagen}" mode="advanced"
+                                                  multiple="true" sizeLimit="100000000" fileLimit="15"
+                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                    <p:message for="imagenes_interior_inmueble"/>
+                                </div>
+
+                            </div>
+
+                            <p:commandButton value="#{inmuebleArriendoBean.mensajeCrear}"
+                                             action="#{inmuebleArriendoBean.crearInmuebleArriendo}" icon="pi pi-plus-circle"
+                                             update="@form,crud_inm_arriendo:lista_inmuebles"/>
+
+                            <p:growl for="mensaje_bean" showDetail="true"/>
+                        </h:form>
+                    </p:dialog>
+
+                    <p:confirmDialog global="true" showEffect="fade" width="300">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+                                         icon="pi pi-times" />
+                    </p:confirmDialog>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>

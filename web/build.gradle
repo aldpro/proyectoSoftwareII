@@ -1,0 +1,13 @@
+plugins {
+    id 'org.joinfaces' version '4.7.3'
+}
+dependencies {
+    implementation project(":negocio")
+    implementation 'org.joinfaces:jsf-spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.primefaces:primefaces:11.0.0'
+    implementation 'io.nayuki:qrcodegen:1.8.0'
+    implementation 'xmlbeans:xmlbeans:2.3.0'
+    implementation 'com.lowagie:itext:2.1.7'
+    implementation 'org.apache.poi:poi-ooxml:3.15'
+}
