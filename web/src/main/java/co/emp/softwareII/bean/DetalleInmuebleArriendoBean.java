@@ -25,6 +25,7 @@ import java.util.Map;
 @ViewScoped
 public class DetalleInmuebleArriendoBean implements Serializable {
 
+    //esta clase nos permite tener los objetos de el datalle de cada inmueble
     @Autowired
     private AdminServicio adminServicio;
 
