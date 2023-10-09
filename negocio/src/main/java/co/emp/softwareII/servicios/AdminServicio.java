@@ -25,10 +25,12 @@ public interface AdminServicio {
 
     InmVenta actualizarInmVenta(InmVenta inmVenta) throws Exception;
 
+
     void eliminarInmVenta(Integer codigoInmVenta) throws Exception;
 
     List<InmVenta> listarInmVenta();
 
+    //Este metodo es para obtener el codigo del inmueble
     InmVenta obtenerInmVenta(Integer codigoInmVenta) throws Exception;
 
     //Gestion de ciudades
