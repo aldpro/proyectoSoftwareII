@@ -42,7 +42,7 @@ public interface AdminServicio {
     List<Ciudad> listarCiudades();
 
     Ciudad actualizarCiudad(Ciudad ciudad) throws Exception;
-
+    // Este método lista los inmuebles
     List<InmVenta> listarInmuebleVentaCiudad(Integer codigo);
 
     List<InmArriendo> listarInmuebleArriendoCiudad(Integer codigo);
