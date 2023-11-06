@@ -15,7 +15,7 @@ import java.util.List;
 
 @Component
 @ViewScoped
-public class InmuebleBean implements Serializable {
+public class InmuebleBean implements Serializable {//Bean para consultas de los inmuebles
 
     @Autowired
     AdminServicio adminServicio;
@@ -49,6 +49,7 @@ public class InmuebleBean implements Serializable {
 
     @Getter @Setter
     private Ciudad ciudad;
+
 
     //Bean para consultas de los inmuebles
     @PostConstruct
