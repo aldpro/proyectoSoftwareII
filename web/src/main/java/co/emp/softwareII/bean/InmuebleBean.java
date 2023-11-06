@@ -50,6 +50,7 @@ public class InmuebleBean implements Serializable {
     @Getter @Setter
     private Ciudad ciudad;
 
+    //Bean para consultas de los inmuebles
     @PostConstruct
     public void init(){
         inmArriendo = new InmArriendo();
