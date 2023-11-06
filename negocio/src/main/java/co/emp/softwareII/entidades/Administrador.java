@@ -1,5 +1,5 @@
 package co.emp.softwareII.entidades;
-
+//Entidad administrador para implementar login
 import lombok.*;
 
 import javax.persistence.*;
