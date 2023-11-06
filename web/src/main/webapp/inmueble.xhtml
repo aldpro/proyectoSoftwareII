@@ -42,7 +42,6 @@
                                 <f:selectItems value="#{inmuebleBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}"/>
                                 <p:ajax event="change" listener="#{inmuebleBean.elegirCiudad}" update="lista_inmuenle_arriendo,lista_inmuebeles_venta"/>
                             </p:selectOneMenu>
-
                         </div>
                     </div>
                 </h:form>
@@ -90,7 +89,7 @@
                                     </div>
                                     <p class="text-black-50 card-subtitle">Valor de arrendamiento</p>
                                     <p class="card-text h4 pr">$ #{inmueble_arriendo.cambiarFormato()}</p>
-                                    
+
                                 </div>
                                 <a class="btn-cardbox-img" href="detalle_inmueble_arriendo.xhtml?inmueble_id=#{inmueble_arriendo.codigo}" target="_blank">
                                     <button type="button" class="w-100 btn btn-lg rounded-3" style="background: #934fc2; color: white">Ver más</button>

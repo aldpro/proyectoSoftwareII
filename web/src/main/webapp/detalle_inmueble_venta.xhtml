@@ -78,6 +78,96 @@
                         </div>
                     </div>
                 </div>
+        <div class="card mb-5 shadow-sm" style="background: #004581;width: available">
+            <div class="justify-content-between align-items-center mt-4">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 text-white">
+
+                    <div class="col mb-2 text-center">
+
+                        <p class="card-subtitle mb-1"> Área Construida</p>
+                        <p class="h3">#{detalleInmuebleVentaBean.inmVenta.areaConstruida} m²</p>
+                    </div>
+                    <div class="col text-center">
+                        <p class="card-subtitle mb-1">Habitaciones</p>
+                        <p class="h3">#{detalleInmuebleVentaBean.inmVenta.habitacion}
+                            <a class="btn-cardbox-img" target="_blank">
+                                <img src="/resources/img/icono_cama.png" class="rounded-1" style="height: 25px; width: 30px" alt="desc"/>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-2 text-center" jsf:rendered="#{detalleInmuebleVentaBean.inmVenta.bano > 0}">
+                        <p class="card-subtitle mb-1">Baños</p>
+                        <p class="h3">#{detalleInmuebleVentaBean.inmVenta.bano}
+                            <a class="btn-cardbox-img" target="_blank">
+                                <img src="/resources/img/icono_banera.png" class="rounded-1" style="height: 25px; width: 30px" alt="desc"/>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col text-center" jsf:rendered="#{detalleInmuebleVentaBean.inmVenta.estrato > 0}">
+                        <p class="card-subtitle mb-1">Estrato</p>
+                        <p class="h3">#{detalleInmuebleVentaBean.inmVenta.estrato}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bd-example mb-5 shadow-sm">
+            <div class="alert text-white" style="background: #004581">
+                <h4 class="alert-heading m-lg-3 fw-bold">Descripción del inmueble</h4>
+                <p class="m-lg-3">#{detalleInmuebleVentaBean.inmVenta.descripcion}</p>
+                <hr>
+                </hr>
+                <h4 class="alert-heading m-lg-3 fw-bold">Datos importantes</h4>
+                <div class="justify-content-between m-lg-3 align-items-center">
+                    <div class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 mt-4">
+                        <div class="col">
+                            <strong class="card-subtitle"> Área del lote</strong>
+                            <p>#{detalleInmuebleVentaBean.inmVenta.areaLote} m²</p>
+                        </div>
+                        <div class="col">
+                            <strong class="card-subtitle"> Área Construida</strong>
+                            <p>#{detalleInmuebleVentaBean.inmVenta.areaConstruida} m²</p>
+                        </div>
+                        <div class="col" jsf:rendered="#{detalleInmuebleVentaBean.inmVenta.habitacion > 0}">
+                            <strong class="card-subtitle">Habitaciones</strong>
+                            <p>#{detalleInmuebleVentaBean.inmVenta.habitacion}</p>
+                        </div>
+                        <div class="col" jsf:rendered="#{detalleInmuebleVentaBean.inmVenta.bano > 0}">
+                            <strong class="card-subtitle">Baños</strong>
+                            <p>#{detalleInmuebleVentaBean.inmVenta.bano}</p>
+                        </div>
+                        <div class="col" jsf:rendered="#{detalleInmuebleVentaBean.inmVenta.estrato > 0}">
+                            <strong class="card-subtitle">Estrato</strong>
+                            <p>#{detalleInmuebleVentaBean.inmVenta.estrato}</p>
+                        </div>
+                        <div class="col">
+                            <strong class="card-subtitle">Antigüedad</strong>
+                            <p>#{detalleInmuebleVentaBean.inmVenta.antiguedad.nombre}</p>
+                        </div>
+                        <div class="col">
+                            <strong class="card-subtitle">Niveles</strong>
+                            <p>#{detalleInmuebleVentaBean.inmVenta.niveles}</p>
+                        </div>
+                        <div class="col">
+                            <strong class="card-subtitle">Tipo de inmueble</strong>
+                            <p>#{detalleInmuebleVentaBean.inmVenta.tipoInmueble.nombre}</p>
+                        </div>
+                        <div class="col">
+                            <strong class="card-subtitle">Valuo comercial</strong>
+                            <p>$ #{detalleInmuebleVentaBean.inmVenta.cambiarFormato()}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://maps.google.com/maps/api/js?sensor=false" type="application/javascript"></script>
+
+        <h4 class="m-lg-3 fw-bold">Ubicación</h4>
+        <div class="card mb-4">
+            <p:gmap center="#{detalleInmuebleVentaBean.ubicacion}" zoom="15" type="HYBRID" style="width:100%;height:500px"
+                    model="#{detalleInmuebleVentaBean.simpleModel}"/>
+        </div>
 
 
     </ui:define>
