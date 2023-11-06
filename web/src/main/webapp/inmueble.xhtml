@@ -42,7 +42,6 @@
                                 <f:selectItems value="#{inmuebleBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}"/>
                                 <p:ajax event="change" listener="#{inmuebleBean.elegirCiudad}" update="lista_inmuenle_arriendo,lista_inmuebeles_venta"/>
                             </p:selectOneMenu>
-
                         </div>
                     </div>
                 </h:form>
