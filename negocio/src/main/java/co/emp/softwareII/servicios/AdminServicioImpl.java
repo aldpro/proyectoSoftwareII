@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Métodos con consultas a la base de datos
+ */
+
 @Service
 public class AdminServicioImpl implements AdminServicio{
 
